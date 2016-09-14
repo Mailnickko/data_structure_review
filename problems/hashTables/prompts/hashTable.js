@@ -18,7 +18,7 @@ class HashTable {
 
   }
 
-  rehash(limit) {
+  resize(limit) {
 
   }
 

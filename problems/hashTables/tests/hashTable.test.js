@@ -13,15 +13,30 @@ describe('HashTable', () => {
     });
 
     it('should have the methods insert(), retrieve(), remove(), and resize()', () => {
-
+      const hashTable = new solution.HashTable();
+      should.exist(hashTable.insert);
+      hashTable.insert.should.be.a.Function;
+      should.exist(hashTable.retrieve);
+      hashTable.retrieve.should.be.a.Function;
+      should.exist(hashTable.remove);
+      hashTable.remove.should.be.a.Function;
+      should.exist(hashTable.resize);
+      hashTable.resize.should.be.a.Function;
     });
 
     it('should return a hash table', () => {
-
+      const hashTable = new solution.HashTable();
+      hashTable.should.be.an.Object;
     });
 
     it('should retrieve a different instance of HashTable each time', () => {
+      const hashTable = new solution.HashTable();
+      should.exist(hashTable);
 
+      const hashTable2 = new solution.HashTable();
+      should.exist(hashTable2);
+
+      hashTable.should.not.be.equal(hashTable2);
     });
   });
 
