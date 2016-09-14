@@ -5,11 +5,11 @@ const Graph = function() {
 }
 
 Graph.prototype.addNode = function(node) {
-
+  this.nodes[node] = this.nodes[node] || { edges: {} };
 };
 
 Graph.prototype.contains = function(node) {
-
+  return !!this.nodes[node];
 };
 
 Graph.prototype.removeNode = function(node) {
