@@ -15,5 +15,46 @@ describe('LinkedList', () => {
       assert.equal(myList.tail.value, 'New Tail');
       assert.equal(myList.head.next.value, 10);
     });
+
+    it('should check to see a value exists in the list', () => {
+      const myList = new LinkedList(0);
+      myList.addToTail(4);
+      myList.addToTail(6);
+      myList.addToTail(8);
+      myList.addToTail(10);
+
+      assert.isFalse(myList.contains(5));
+      assert.isTrue(myList.contains(6));
+    });
+
+    it('should find the index of a list or return false', () => {
+      const myList = new LinkedList(1);
+      myList.addToTail(2);
+      myList.addToTail(3);
+      myList.addToTail(4);
+
+      assert.equal(myList.indexOf(2), 1);
+      assert.equal(myList.indexOf(3), 2);
+      assert.equal(myList.indexOf(0), false);
+    });
+
+    it('should insert a node after a given node', () => {
+      const myList = new LinkedList(1);
+      myList.addToTail(2);
+      myList.addToTail(4);
+      const chosenNode = myList.head.next;
+      myList.insertAfter(chosenNode, 3);
+      assert.equal(chosenNode.next.value, 3);
+    })
+
+    it('should remove a node after a given node', () => {
+      const myList = new LinkedList(1);
+      myList.addToTail(2);
+      myList.addToTail(3);
+      myList.addToTail(4);
+      const chosenNode = myList.head.next;
+      myList.removeAfter(chosenNode);
+      assert.equal(chosenNode.next.value, 4);
+    })
   });
 });

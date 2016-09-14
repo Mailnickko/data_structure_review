@@ -22,6 +22,58 @@ class LinkedList {
       this.tail = newNode;
     }
   }
+
+  contains(val) {
+    let current = this.head;
+    while (current) {
+      if (current.value === val) {
+        return true;
+      } else {
+        current = current.next;
+      }
+    }
+    return false;
+  }
+
+  indexOf(val) {
+    let current = this.head;
+    let count = 0;
+    while (current) {
+      if (current.value === val) {
+        return count;
+      } else {
+        current = current.next;
+        count++;
+      }
+    }
+    return false;
+  }
+
+  insertAfter(node, val) {
+    let current = this.head;
+    let newNode = new Node(val);
+    while (current) {
+      if (current.value === node.value) {
+        newNode.next = current.next;
+        current.next = newNode;
+        return;
+      } else {
+        current = current.next;
+      }
+    }
+  }
+
+  removeAfter(node) {
+    let current = this.head;
+    while (current) {
+      if (current.value === node.value) {
+        current.next = current.next.next;
+        return;
+      } else {
+        current = current.next;
+      }
+    }
+  }
 }
 
 class Node {
