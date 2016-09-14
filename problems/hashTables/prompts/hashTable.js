@@ -7,11 +7,37 @@ class HashTable {
   }
 
   insert(key, value) {
+    let index = createHashKeyIndex(key, this.limit);
+    let bucket = this.storage[index] = this.storage[index] || [];
+    let exists = false;
+    let tuple;
 
+    for (var i = 0; i < bucket.length; i++) {
+      tuple = bucket[i];
+      if (tuple[0] === key) {
+        tuple[1] === value;
+        exists = true;
+      }
+    }
+
+    if (!exists) {
+      bucket.push([key, value]);
+      this.size++;
+    }
   }
 
   retrieve(key) {
-
+    let index = createHashKeyIndex(key, this.limit);
+    if (this.storage[index]) {
+      let bucket = this.storage[index];
+      let tuple;
+      for (var i = 0; i < bucket.length; i++) {
+        tuple = bucket[i];
+        if (tuple[0] === key) {
+          return tuple[1];
+        }
+      }
+    }
   }
 
   remove(key) {
