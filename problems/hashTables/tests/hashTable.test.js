@@ -3,8 +3,10 @@
 const solution = require('../prompts/hashTable.js');
 const should = require('chai').should();
 const assert = require('chai').assert;
+const expect = require('chai').expect;
 
 describe('HashTable', () => {
+  var hashTable;
   describe('HashTable properties', () => {
 
     it('should exist and should be a function', () => {
@@ -15,13 +17,13 @@ describe('HashTable', () => {
     it('should have the methods insert(), retrieve(), remove(), and resize()', () => {
       const hashTable = new solution.HashTable();
       should.exist(hashTable.insert);
-      hashTable.insert.should.be.a.Function;
+      expect(hashTable.insert).to.be.a('function');
       should.exist(hashTable.retrieve);
-      hashTable.retrieve.should.be.a.Function;
+      expect(hashTable.retrieve).to.be.a('function');
       should.exist(hashTable.remove);
-      hashTable.remove.should.be.a.Function;
+      expect(hashTable.remove).to.be.a('function');
       should.exist(hashTable.resize);
-      hashTable.resize.should.be.a.Function;
+      expect(hashTable.resize).to.be.a('function');
     });
 
     it('should return a hash table', () => {
@@ -42,22 +44,31 @@ describe('HashTable', () => {
 
   describe('HashTable methods', () => {
     describe('the insert() method', () => {
-      it('should store values that are inserted', () => {
+      beforeEach(() => {
+        hashTable = new solution.HashTable();
+      });
 
+      it('should store values that are inserted', () => {
+        hashTable.insert('Test', 'Success');
+        expect(hashTable.retrieve('Test')).to.equal('Success');
       });
 
       it('should update values if key already exists', () => {
-
+        hashTable.insert('Test', 'WOOHOO');
+        expect(hashTable.retrieve('Test')).not.to.equal('Success');
+        expect(hashTable.retrieve('Test')).to.equal('WOOHOO');
       });
     });
 
     describe('the retrieve() method', () => {
       it('should return values of stored keys', () => {
-
+        var grab = hashTable.retrieve('Test');
+        expect(grab).to.equal('WOOHOO');
       });
 
       it('should return undefined for unknown keys', () => {
-
+        var grab = hashTable.retrieve('Nonsense');
+        expect(grab).to.equal(undefined);
       });
     });
 
