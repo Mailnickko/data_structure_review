@@ -43,11 +43,10 @@ describe('HashTable', () => {
   });
 
   describe('HashTable methods', () => {
+    beforeEach(() => {
+      hashTable = new solution.HashTable();
+    });
     describe('the insert() method', () => {
-      beforeEach(() => {
-        hashTable = new solution.HashTable();
-      });
-
       it('should store values that are inserted', () => {
         hashTable.insert('Test', 'Success');
         expect(hashTable.retrieve('Test')).to.equal('Success');
@@ -62,6 +61,7 @@ describe('HashTable', () => {
 
     describe('the retrieve() method', () => {
       it('should return values of stored keys', () => {
+        hashTable.insert('Test', 'WOOHOO');
         var grab = hashTable.retrieve('Test');
         expect(grab).to.equal('WOOHOO');
       });
@@ -73,22 +73,28 @@ describe('HashTable', () => {
     });
 
     describe('the remove() method', () => {
-      it('should remove values', () => {
-
-      });
-
-      it('should return undefined for unknown keys', () => {
-
+      it('should remove values and return undefined for removed keys', () => {
+        hashTable.insert('Tacos', 'Yes Please');
+        var grab = hashTable.retrieve('Tacos');
+        expect(grab).to.equal('Yes Please');
+        hashTable.remove('Tacos');
+        var grabAgain = hashTable.retrieve('Tacos');
+        expect(grabAgain).to.equal(undefined);
       });
     });
 
     describe('the resize() method', () => {
-      it('should handle collisions', () => {
-
-      });
 
       it('should be able to resize', () => {
-
+        expect(hashTable.limit).to.equal(5);
+        hashTable.insert('test1', 'one');
+        hashTable.insert('test2', 'two');
+        hashTable.insert('test3', 'three');
+        hashTable.insert('test4', 'four');
+        expect(hashTable.limit).to.equal(10);
+        hashTable.remove('test4');
+        hashTable.remove('test3');
+        expect(hashTable.limit).to.equal(5);
       });
     });
   });
