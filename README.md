@@ -9,7 +9,7 @@ npm install
 ## Running tests
 
 ```
-npm test problems/<topic>/<filename>.js
+npm test problems/<topic>/test/<filename>.js
 ```
 
 ## Adding tests
