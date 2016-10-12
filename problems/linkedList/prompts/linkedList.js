@@ -74,6 +74,27 @@ class LinkedList {
       }
     }
   }
+
+  makeLinkedListRange (from, to) {
+    for (let i = from; from <= to; from++) {
+      this.addToTail(from);
+    }
+    return this;
+  }
+
+  reverse() {
+    let current = this.head;
+    let prev = null;
+    let next;
+
+    while (current !== null) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+    this.head = prev;
+  }
 }
 
 class Node {
@@ -84,3 +105,8 @@ class Node {
 }
 
 module.exports = { LinkedList };
+
+let test = new LinkedList();
+test.makeLinkedListRange(0,10);
+test.reverse();
+console.log("TEST", JSON.stringify(test));
